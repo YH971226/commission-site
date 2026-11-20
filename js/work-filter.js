@@ -4,32 +4,14 @@
     element,
     tags: JSON.parse(element.dataset.tags),
   }));
-  const available = new Set(cards.flatMap(card => card.tags));
   const initialTag = new URL(window.location.href).searchParams.get("tag");
-  if (initialTag) available.add(initialTag);
-  if (!available.size) return;
-
-  const presets = window.SiteTagPresets?.groups ?? [];
-  const presetTags = new Set(presets.flat());
-  const groups = [
-    ...presets.map(group => group.filter(tag => available.has(tag))),
-    [...available].filter(tag => !presetTags.has(tag)),
-  ];
   const controls = new Map();
-  for (const tags of groups.filter(group => group.length)) {
-    const group = document.createElement("div");
-    group.className = "work-tag-group";
-    for (const tag of tags) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = tag;
-      button.setAttribute("aria-pressed", "false");
-      button.addEventListener("click", () => selectTag(selected === tag ? "" : tag));
-      controls.set(tag, button);
-      group.append(button);
-    }
-    filter.append(group);
+  for (const button of filter.querySelectorAll("[data-work-tag]")) {
+    const tag = button.dataset.workTag;
+    button.addEventListener("click", () => selectTag(selected === tag ? "" : tag));
+    controls.set(tag, button);
   }
+  filter.hidden = false;
 
   const tocEntries = new Map([...document.querySelectorAll(".works-toc .toc a")].map(link => [
     link.hash.slice(1),
@@ -67,5 +49,8 @@
     total.textContent = visible;
     empty.hidden = visible !== 0;
   }
-  if (controls.has(initialTag)) selectTag(initialTag);
+  if (initialTag) {
+    const match = [...controls.keys()].find(tag => tag.toLowerCase() === initialTag.toLowerCase());
+    selectTag(match || initialTag);
+  }
 })();

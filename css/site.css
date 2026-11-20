@@ -1,6 +1,64 @@
 /* 只保留指定布局：1200px / 12 栏，每栏 10 + 80 + 10。 */
 body {
   margin: 0;
+  color: #111;
+  background: #fff;
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-padding-top: 88px;
+}
+
+body > main {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 24px 12px;
+}
+
+body > main > article {
+  padding-inline: 10px;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+h2 {
+  margin: 24px 0 16px;
+  font-size: 1.5rem;
+  line-height: 1.35;
+}
+
+h3 {
+  margin: 24px 0 12px;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid #0000ee;
+  outline-offset: 3px;
 }
 
 .wrap {
@@ -10,6 +68,10 @@ body {
 body > footer {
   text-align: center;
   line-height: normal;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 22px 24px;
+  overflow-wrap: anywhere;
 }
 
 body > footer > .wrap > p {
@@ -22,6 +84,21 @@ body > footer > .wrap > p {
   z-index: 100;
   background: #ffffff;
   text-align: center;
+  padding: 8px 12px;
+}
+
+.site-header nav,
+.home-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 8px;
+  row-gap: 4px;
+}
+
+.site-name {
+  display: inline-block;
+  margin-bottom: 4px;
 }
 
 .grid {
@@ -44,6 +121,7 @@ body > footer > .wrap > p {
 
 .work-images figure {
   text-align: center;
+  margin: 24px 0;
 }
 
 .work-images figure > a {
@@ -72,14 +150,52 @@ body > footer > .wrap > p {
   color: #555;
 }
 
+.home-rule {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 16px 0 24px;
+}
+
+.recent-title {
+  margin-top: 0;
+}
+
 .recent-grid,
 .work-list {
   list-style: none;
   padding: 0;
+  margin-block: 0 24px;
+  row-gap: 16px;
+}
+
+.recent-item > a,
+.work-card > a {
+  display: flex;
+  justify-content: center;
+}
+
+.recent-item img,
+.work-card img {
+  display: block;
+}
+
+.toc-title,
+.works-filter h2 {
+  margin: 4px 0 16px;
+  font: inherit;
+}
+
+.commission-toc .toc ul {
+  margin: 8px 0 16px;
+  padding-inline-start: 20px;
+}
+
+.breadcrumb,
+.meta {
+  margin-bottom: 16px;
 }
 
 .works-filter h2 {
-  margin: 1em 0;
   font: inherit;
 }
 
@@ -87,6 +203,14 @@ body > footer > .wrap > p {
   display: flex;
   flex-wrap: wrap;
   column-gap: .35rem;
+}
+
+.work-tag-group + .work-tag-group { margin-top: .65rem; }
+.work-tag-group-title {
+  flex-basis: 100%;
+  font-size: .85em;
+  color: #525252;
+  overflow-wrap: anywhere;
 }
 
 .works-toc .toc a,
@@ -119,7 +243,7 @@ body > footer > .wrap > p {
 .commission-side,
 .contact-side {
   position: sticky;
-  top: 4rem;
+  top: 88px;
   align-self: start;
 }
 

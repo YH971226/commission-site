@@ -1,17 +1,13 @@
-/* 预设标签唯一来源：公开筛选、单件编辑页与批量标签面板共用，保持相同顺序和分组。 */
+/* 后台候选按标签库的分组顺序排列，未分组放在最后。 */
 (function () {
   'use strict';
 
-  const groups = [
-    ['原创角色', '版权角色'],
-    ['正比', '非正比'],
-    ['人物设计', '服装设计', '小时候大时候站一起', '对称Q服设'],
-    ['立绘', '半身', '胸像', '头像'],
-    ['组合页', '插图'],
-  ];
-
   window.SiteTagPresets = {
-    groups,
-    flat: groups.flat(),
+    grouped(catalog) {
+      const groups = new Map(catalog.groups.map(name => [name, []]));
+      groups.set('', []);
+      for (const tag of catalog.tags) groups.get(tag.group).push(tag);
+      return [...groups].filter(([, tags]) => tags.length);
+    },
   };
 })();
