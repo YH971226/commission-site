@@ -1,0 +1,183 @@
+/* 只保留指定布局：1200px / 12 栏，每栏 10 + 80 + 10。 */
+body {
+  margin: 0;
+}
+
+.wrap {
+  width: 100%;
+}
+
+body > footer {
+  text-align: center;
+  line-height: normal;
+}
+
+body > footer > .wrap > p {
+  margin-block: 0;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  width: min(100%, 1200px);
+  margin: 0 auto;
+}
+
+.grid > * {
+  min-width: 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.grid img {
+  max-width: 100%;
+  height: auto;
+}
+
+.work-images figure {
+  text-align: center;
+}
+
+.work-images figure > a {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.work-images img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.home-owner,
+.home-status,
+.home-nav {
+  text-align: center;
+}
+
+.home-nav > span[aria-hidden="true"] {
+  display: none;
+}
+
+.home-visitors {
+  font-size: .8rem;
+  color: #555;
+}
+
+.recent-grid,
+.work-list {
+  list-style: none;
+  padding: 0;
+}
+
+.works-filter h2 {
+  margin: 1em 0;
+  font: inherit;
+}
+
+.work-tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: .35rem;
+}
+
+.works-toc .toc a,
+.work-tag-group button {
+  color: #0000ee;
+  font-size: inherit;
+}
+
+.work-tag-group button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  font: inherit;
+  text-align: start;
+  text-decoration: underline;
+}
+
+.work-tag-group button[aria-pressed="true"] {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.works-toc,
+.works-filter,
+.commission-toc,
+.commission-side,
+.contact-side {
+  position: sticky;
+  top: 4rem;
+  align-self: start;
+}
+
+.col-1 { grid-column: span 1; }
+.col-2 { grid-column: span 2; }
+.col-3 { grid-column: span 3; }
+.col-4 { grid-column: span 4; }
+.col-5 { grid-column: span 5; }
+.col-6 { grid-column: span 6; }
+.col-7 { grid-column: span 7; }
+.col-8 { grid-column: span 8; }
+.col-9 { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+
+.rule-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.rule-text b {
+  font-weight: 700;
+}
+
+.work-pagination {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .5rem;
+  margin-block: 1rem;
+}
+
+.work-pagination [rel="prev"] {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.work-pagination [rel="next"] {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.rule-text .rule-align-center {
+  text-align: center;
+}
+
+.commission-links {
+  text-align: right;
+}
+
+/* Apply the same layout to previously generated pages. */
+.commission-content article > p:has(> a:first-child[href="contact.html"] + a:last-child[href="works.html"]) {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: .25rem;
+  font-size: 0;
+}
+
+.commission-content article > p:has(> a:first-child[href="contact.html"] + a:last-child[href="works.html"]) > a {
+  font-size: 1rem;
+}
