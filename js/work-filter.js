@@ -11,7 +11,7 @@
     button.addEventListener("click", () => selectTag(selected === tag ? "" : tag));
     controls.set(tag, button);
   }
-  filter.hidden = false;
+  filter.hidden = controls.size === 0;
 
   const tocEntries = new Map([...document.querySelectorAll(".works-toc .toc a")].map(link => [
     link.hash.slice(1),
@@ -51,6 +51,6 @@
   }
   if (initialTag) {
     const match = [...controls.keys()].find(tag => tag.toLowerCase() === initialTag.toLowerCase());
-    selectTag(match || initialTag);
+    if (match) selectTag(match);
   }
 })();

@@ -207,10 +207,7 @@ body > footer > .wrap > p {
 
 .work-tag-group + .work-tag-group { margin-top: .65rem; }
 .work-tag-group-title {
-  flex-basis: 100%;
-  font-size: .85em;
-  color: #525252;
-  overflow-wrap: anywhere;
+  display: none;
 }
 
 .works-toc .toc a,
